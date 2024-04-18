@@ -21,7 +21,6 @@ public class WeatherDataRetriever {
             areas = objectMapper.readTree(new URL(String.format(CONVERTER_BASED_URL, municipality, API_KEY)));
             Log.d("LUT", areas.toPrettyString());
             if (areas == null || areas.isEmpty()) {
-                System.out.println("No geographic data returned for the municipality: " + municipality);
                 return null;
             }
 
@@ -35,11 +34,6 @@ public class WeatherDataRetriever {
             weatherData = objectMapper.readTree(new URL(String.format(WEATHER_BASED_URL, latitude, longitude, API_KEY)));
             Log.d("LUT", weatherData.toPrettyString());
             if (weatherData == null || weatherData.isEmpty()) {
-                System.out.println("No weather data returned for the coordinates: " + latitude + ", " + longitude);
-                return null;
-            }
-            if (!weatherData.has("weather") || !weatherData.get("weather").isArray() || weatherData.get("weather").isEmpty()) {
-                System.out.println("Weather data array is missing or empty.");
                 return null;
             }
 
@@ -47,8 +41,8 @@ public class WeatherDataRetriever {
                     weatherData.get("name").asText(),
                     weatherData.get("weather").get(0).get("main").asText(),
                     weatherData.get("weather").get(0).get("description").asText(),
-                    weatherData.get("main").get(0).get("temp").asText(),
-                    weatherData.get("wind").get(0).get("speed").asText()
+                    weatherData.get("main").get("temp").asText(),
+                    weatherData.get("wind").get("speed").asText()
             );
             return wd;
         } catch (MalformedURLException e) {

@@ -54,28 +54,33 @@ public class MainActivity extends AppCompatActivity {
         service.execute(new Runnable() {
             @Override
             public void run() {
-                ArrayList<MunicipalityData> populationData = dr.getData(context, location);
-                WeatherData weatherData = wr.getWeatherData(location);
-                if (populationData != null && weatherData != null) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(MainActivity.this, MunicipalityDataActivity.class);
-                            intent.putExtra("populationData", populationData);
-                            intent.putExtra("weatherData", weatherData);
-                            startActivity(intent);
+                try {
+                    ArrayList<MunicipalityData> populationData = dr.getData(context, location);
+                    WeatherData weatherData = wr.getWeatherData(location);
+                    if (populationData != null && weatherData != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(MainActivity.this, MunicipalityDataActivity.class);
+                                intent.putExtra("populationData", populationData);
+                                intent.putExtra("weatherData", weatherData);
+                                Log.d("LUT", "Starting MunicipalityDataActivity with Intent.");
+                                startActivity(intent);
 
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Failed to retrieve data", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("LUT", "Error in data retrieval");
+                            }
+                        });
+                    }
+                    Log.d("LUT", "Data haettu");
+                } catch (Exception e) {
+                    Log.e("LUT", "Error in data retrieval: " + e.getMessage());
                 }
-                Log.d("LUT", "Data haettu");
             }
         });
     }
