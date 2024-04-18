@@ -1,6 +1,7 @@
 package com.example.harjoitusty;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +25,7 @@ public class MunicipalityDataRetriever {
 
         try {
             areas = objectMapper.readTree(new URL("https://statfin.stat.fi/PxWeb/api/v1/en/StatFin/synt/statfin_synt_pxt_12dy.px"));
+            Log.d("LUT", "API Response: " + areas.toPrettyString());
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -43,6 +45,8 @@ public class MunicipalityDataRetriever {
         for (JsonNode node : areas.get("variables").get(1).get("valueTexts")) {
             keys.add(node.asText());
         }
+        Log.d("LUT", "Keys: " + keys.toString());
+        Log.d("LUT", "Values: " + values.toString());
 
         HashMap<String, String> municipalityCodes = new HashMap<>();
 
@@ -98,6 +102,7 @@ public class MunicipalityDataRetriever {
             for (int i = 0; i < years.size(); i++) {
                 populationData.add(new MunicipalityData(Integer.valueOf(years.get(i)), Integer.valueOf(populations.get(i))));
             }
+            Log.d("LUT", "Population Data: " + populationData.toString());
             return populationData;
 
         } catch (MalformedURLException e) {

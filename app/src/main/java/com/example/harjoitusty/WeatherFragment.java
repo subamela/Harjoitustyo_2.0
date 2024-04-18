@@ -53,8 +53,11 @@ public class WeatherFragment extends Fragment {
         if (weatherData != null) {
             updateWeatherIcon(weatherData.getMain());
             textTemperature.setText(weatherData.getTemperature() + "°C");
-            textWeatherData.setText(String.format("Wind Speed: %s\n%s",
-                    weatherData.getWindSpeed(), weatherData.getDescription()));
+            textWeatherData.setText(weatherData.getName() + "\n" +
+                    "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() +")\n" +
+                    "Lämpötila: " + weatherData.getTemperature() + " K\n" +
+                    "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n"
+            );
         }
     }
 
@@ -73,7 +76,7 @@ public class WeatherFragment extends Fragment {
             case "few clouds":
                 weatherIcon.setImageResource(R.drawable.ic_few_clouds);
                 break;
-            case "scattered clouds":
+            case "clouds":
                 weatherIcon.setImageResource(R.drawable.ic_scattered_clouds);
                 break;
             case "broken clouds":
