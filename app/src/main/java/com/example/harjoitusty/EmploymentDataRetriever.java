@@ -17,14 +17,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MunicipalityDataRetriever {
-    public ArrayList<MunicipalityData> getData(Context context, String municipality) {
+public class EmploymentDataRetriever {
+
+    public ArrayList<EmploymentData> getData(Context context, String municipality) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         JsonNode areas = null;
 
         try {
-            areas = objectMapper.readTree(new URL("https://statfin.stat.fi/PxWeb/api/v1/en/StatFin/synt/statfin_synt_pxt_12dy.px"));
+            areas = objectMapper.readTree(new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_115x.px"));
             Log.d("LUT", "API Response: " + areas.toPrettyString());
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
@@ -33,8 +34,6 @@ public class MunicipalityDataRetriever {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        System.out.println(areas.toPrettyString());
 
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
@@ -58,7 +57,7 @@ public class MunicipalityDataRetriever {
         code = municipalityCodes.get(municipality);
 
         try {
-            URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/synt/statfin_synt_pxt_12dy.px");
+            URL url = new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_115x.px");
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
@@ -66,9 +65,9 @@ public class MunicipalityDataRetriever {
             con.setRequestProperty("Accept", "application/json");
             con.setDoOutput(true);
 
-            JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query));
+            JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query2));
 
-            ((ObjectNode) jsonInputString.get("query").get(1).get("selection")).putArray("values").add(code);
+            ((ObjectNode) jsonInputString.get("query2").get(0).get("selection")).putArray("values").add(code);
 
             byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
             OutputStream os = con.getOutputStream();
@@ -81,7 +80,7 @@ public class MunicipalityDataRetriever {
                 response.append(line.trim());
             }
 
-            JsonNode municipalityData = objectMapper.readTree(response.toString());
+            JsonNode employmentData = objectMapper.readTree(response.toString());
 
 
             ArrayList<String> years = new ArrayList<>();
@@ -89,21 +88,21 @@ public class MunicipalityDataRetriever {
 
             //Täällä voidaan muuttaa sitä kuinka monta vuotta luetaan !!!!!!!!!!!!!!!
 
-            for (JsonNode node : municipalityData.get("dimension").get("Vuosi").get("category").get("label")) {
+            for (JsonNode node : employmentData.get("dimension").get("Vuosi").get("category").get("label")) {
                 years.add(node.asText());
             }
 
-            for (JsonNode node : municipalityData.get("value")) {
+            for (JsonNode node : employmentData.get("value")) {
                 populations.add(node.asText());
             }
 
-            ArrayList<MunicipalityData> populationData = new ArrayList<>();
+            //ArrayList<EmploymentData> employmentData = new ArrayList<>();
 
             for (int i = 0; i < years.size(); i++) {
-                populationData.add(new MunicipalityData(Integer.valueOf(years.get(i)), Integer.valueOf(populations.get(i))));
+            //    employmentData.add(new EmploymentData(Integer.valueOf(years.get(i)), Integer.valueOf(populations.get(i))));
             }
-            Log.d("LUT", "Population Data: " + populationData.toString());
-            return populationData;
+            Log.d("LUT", "Population Data: " + employmentData.toString());
+            //return employmentData;
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
@@ -115,4 +114,3 @@ public class MunicipalityDataRetriever {
         return null;
     }
 }
-

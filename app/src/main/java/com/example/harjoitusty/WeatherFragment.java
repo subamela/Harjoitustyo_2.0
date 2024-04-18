@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class WeatherFragment extends Fragment {
+    private TextView textMunicipalityName2;
     private ImageView weatherIcon;
     private TextView textTemperature;
     private TextView textWeatherData;
@@ -41,6 +42,7 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        textMunicipalityName2 = view.findViewById(R.id.textMunicipalityName2);
         weatherIcon = view.findViewById(R.id.imageWeatherIcon);
         textTemperature = view.findViewById(R.id.textTemperature);
         textWeatherData = view.findViewById(R.id.textWeatherData);
@@ -52,10 +54,17 @@ public class WeatherFragment extends Fragment {
     public void displayWeather(WeatherData weatherData) {
         if (weatherData != null) {
             updateWeatherIcon(weatherData.getMain());
-            textTemperature.setText(weatherData.getTemperature() + "°C");
+
+            double temperatureInCelsius = Double.parseDouble(weatherData.getTemperature()) - 273.15;
+            double feelsLikeInCelsius = Double.parseDouble(weatherData.getFeelsLike()) - 273.15;
+
+            textMunicipalityName2.setText(weatherData.getName());
+            textTemperature.setText(String.format("%.1f°C", temperatureInCelsius));
             textWeatherData.setText(weatherData.getName() + "\n" +
                     "Sää nyt: " + weatherData.getMain() + " (" + weatherData.getDescription() +")\n" +
-                    "Lämpötila: " + weatherData.getTemperature() + " K\n" +
+                    "Lämpötila: " + String.format("%.1f°C", temperatureInCelsius)  + "\n" +
+                    "Tuntuu iholla: " + String.format("%.1f°C", feelsLikeInCelsius) + "\n" +
+                    "Ilmanpaine: " + weatherData.getPressure() + "hPa\n" +
                     "Tuulennopeus: " + weatherData.getWindSpeed() + " m/s\n"
             );
         }

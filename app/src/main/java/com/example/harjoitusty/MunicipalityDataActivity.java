@@ -34,10 +34,6 @@ public class MunicipalityDataActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager2 = findViewById(R.id.viewPager2);
 
-        //tabLayout.addTab(tabLayout.newTab().setText("Perustiedot"));
-        //tabLayout.addTab(tabLayout.newTab().setText("Sää"));
-        //tabLayout.addTab(tabLayout.newTab().setText("Työllisyys"));
-
         ArrayList<MunicipalityData> populationData = (ArrayList<MunicipalityData>) getIntent().getSerializableExtra("populationData");
         WeatherData weatherData = (WeatherData) getIntent().getSerializableExtra("weatherData");
 

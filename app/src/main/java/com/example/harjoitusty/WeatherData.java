@@ -8,13 +8,18 @@ public class WeatherData implements Serializable {
     String description;
     String temperature;
     String windSpeed;
+    String feelsLike;
+    String pressure;
 
-    public WeatherData(String name, String main, String description, String temperature, String windSpeed) {
+    public WeatherData(String name, String main, String description, String temperature, String feelsLike, String pressure, String windSpeed) {
         this.name = name;
         this.main = main;
         this.description = description;
         this.temperature = temperature;
+        this.feelsLike = feelsLike;
+        this.pressure = pressure;
         this.windSpeed = windSpeed;
+
     }
 
     public String getName() {
@@ -55,5 +60,21 @@ public class WeatherData implements Serializable {
 
     public void setWindSpeed(String windSpeed) {
         this.windSpeed = windSpeed;
+    }
+
+    public String getFeelsLike() {
+        return feelsLike;
+    }
+
+    public void setFeelsLike(String feelsLike) {
+        this.feelsLike = feelsLike;
+    }
+
+    public String getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(String pressure) {
+        this.pressure = pressure;
     }
 }

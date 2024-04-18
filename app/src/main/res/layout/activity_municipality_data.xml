@@ -21,18 +21,18 @@
         app:tabIndicator="@drawable/tab_indicator">
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Väkiluku" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Väestön kehitys" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sää" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Säätiedot" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Työllisyys" />
     </com.google.android.material.tabs.TabLayout>
 

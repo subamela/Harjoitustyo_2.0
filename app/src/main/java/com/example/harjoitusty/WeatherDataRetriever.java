@@ -42,7 +42,10 @@ public class WeatherDataRetriever {
                     weatherData.get("weather").get(0).get("main").asText(),
                     weatherData.get("weather").get(0).get("description").asText(),
                     weatherData.get("main").get("temp").asText(),
+                    weatherData.get("main").get("feels_like").asText(),
+                    weatherData.get("main").get("pressure").asText(),
                     weatherData.get("wind").get("speed").asText()
+
             );
             return wd;
         } catch (MalformedURLException e) {

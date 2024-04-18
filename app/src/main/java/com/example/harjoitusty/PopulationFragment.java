@@ -14,6 +14,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class PopulationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        txtMunicipalityName = view.findViewById(R.id.textMunicipalityName);
+        txtMunicipalityName = view.findViewById(R.id.textMunicipalityName2);
         barChart = view.findViewById(R.id.barChart);
         if (populationData != null && !populationData.isEmpty()) {
             updateUI();
@@ -66,6 +67,12 @@ public class PopulationFragment extends Fragment {
                 return Integer.compare(md1.getYear(), md2.getYear());
             }
         });
+        barChart.getXAxis().setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value + 1);
+            }
+        });
 
         ArrayList<BarEntry> entries = new ArrayList<>();
         int size = populationData.size();
@@ -76,19 +83,19 @@ public class PopulationFragment extends Fragment {
             entries.add(new BarEntry(data.getYear(), data.getPopulation()));
         }
 
-        BarDataSet barDataSet = new BarDataSet(entries, "Population");
+        BarDataSet barDataSet = new BarDataSet(entries, "Väkiluvut");
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
 
         BarData barData = new BarData(barDataSet);
         barChart.setData(barData);
-        barChart.getDescription().setText("Population over Years");
-        barChart.animateY(1500);
+        barChart.getDescription().setText("Väestön kehitys 5 vuoden aikana");
+        barChart.animateY(2000);
         barChart.invalidate();
 
         if (!entries.isEmpty()) {
-            txtMunicipalityName.setText("Population in " + populationData.get(size - 1).getYear());
+            txtMunicipalityName.setText("Väkiluku " + populationData.get(size - 5).getYear() + "–" + populationData.get(size - 1).getYear());
         }
     }
 }

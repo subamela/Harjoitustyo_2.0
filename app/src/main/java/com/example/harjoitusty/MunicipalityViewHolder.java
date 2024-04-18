@@ -10,7 +10,7 @@ public class MunicipalityViewHolder extends RecyclerView.ViewHolder {
     TextView municipalityName, municipalityWeather;
     public MunicipalityViewHolder(@NonNull View itemView) {
         super(itemView);
-        municipalityName = itemView.findViewById(R.id.textMunicipalityName);
+        municipalityName = itemView.findViewById(R.id.textMunicipalityName2);
         municipalityWeather = itemView.findViewById(R.id.textWeather);
 
     }

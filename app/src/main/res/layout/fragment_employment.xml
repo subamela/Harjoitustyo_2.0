@@ -21,74 +21,46 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textMunicipalityName2"
+                android:id="@+id/textMunicipalityEmployment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="Kunnan nimi"
+                android:text="Kunnan työllisyys"
                 android:textColor="@color/black"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textSää"
+                android:id="@+id/textTyöllisyys"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Sää"
+                android:text="Työllisyys ja työomavaraisuus"
                 android:textColor="@color/black"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textMunicipalityName2" />
-
-            <ImageView
-                android:id="@+id/imageWeatherIcon"
-                android:layout_width="224dp"
-                android:layout_height="199dp"
-                android:layout_marginTop="28dp"
-                android:background="#ADD8E6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textSää"
-                app:srcCompat="@drawable/ic_clear_sky2" />
-
-            <TextView
-                android:id="@+id/textTemperature"
-                android:layout_width="126dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="16dp"
-                android:text="10°C"
-                android:textSize="36dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageWeatherIcon"
-                android:gravity="center"/>
+                app:layout_constraintTop_toBottomOf="@+id/textMunicipalityEmployment" />
 
             <TextView
                 android:id="@+id/textWeatherData"
-                android:layout_width="362dp"
-                android:layout_height="188dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="364dp"
+                android:layout_height="549dp"
+                android:layout_marginTop="40dp"
                 android:background="#ADD8E6"
-                android:text="Wind speed, description of weather, etc"
+                android:text="Työllisyys ja työomavaraisuus kuluneelta vuodelta"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textTemperature"
+                app:layout_constraintTop_toBottomOf="@id/textTyöllisyys"
                 app:layout_constraintVertical_bias="0.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
