@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class EmploymentData implements Serializable {
     private int year;
-    private double employmentRate;
+    private float employmentRate;
 
 
-    public EmploymentData(int year, double employmentRate) {
+    public EmploymentData(int year, float employmentRate) {
         this.year = year;
         this.employmentRate = employmentRate;
 
     }
 
-    public double getEmploymentRate() {
+    public float getEmploymentRate() {
         return employmentRate;
     }
 
@@ -25,8 +25,7 @@ public class EmploymentData implements Serializable {
         this.year = year;
     }
 
-
-    public void setEmploymentRate(double employmentRate) {
+    public void setEmploymentRate(float employmentRate) {
         this.employmentRate = employmentRate;
     }
 

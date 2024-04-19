@@ -67,7 +67,7 @@ public class EmploymentDataRetriever {
 
             JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query2));
 
-            ((ObjectNode) jsonInputString.get("query2").get(1).get("selection")).putArray("values").add(code);
+            ((ObjectNode) jsonInputString.get("query").get(1).get("selection")).putArray("values").add(code);
 
             byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
             OutputStream os = con.getOutputStream();
@@ -98,7 +98,7 @@ public class EmploymentDataRetriever {
             ArrayList<EmploymentData> employmentDataList = new ArrayList<>();
 
             for (int i = 0; i < years.size(); i++) {
-                employmentDataList.add(new EmploymentData(Integer.valueOf(years.get(i)), Double.valueOf(employment.get(i))));
+                employmentDataList.add(new EmploymentData(Integer.valueOf(years.get(i)), Float.valueOf(employment.get(i))));
             }
             Log.d("LUT", "Employment Data: " + employmentDataList.toString());
             return employmentDataList;
