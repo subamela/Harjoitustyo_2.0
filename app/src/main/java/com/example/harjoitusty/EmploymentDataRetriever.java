@@ -67,7 +67,7 @@ public class EmploymentDataRetriever {
 
             JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query2));
 
-            ((ObjectNode) jsonInputString.get("query").get(1).get("selection")).putArray("values").add(code);
+            ((ObjectNode) jsonInputString.get("query").get(0).get("selection")).putArray("values").add(code);
 
             byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
             OutputStream os = con.getOutputStream();
