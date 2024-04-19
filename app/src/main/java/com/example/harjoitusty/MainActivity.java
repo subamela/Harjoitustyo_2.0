@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.commons.lang3.StringUtils;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText editTextLocation;
@@ -48,17 +51,19 @@ public class MainActivity extends AppCompatActivity {
         MunicipalityDataRetriever dr = new MunicipalityDataRetriever();
         WeatherDataRetriever wr = new WeatherDataRetriever();
         EmploymentDataRetriever er = new EmploymentDataRetriever();
-        String location = editTextLocation.getText().toString();
+        String location = editTextLocation.getText().toString().trim();
+        location = StringUtils.capitalize(location);
 
         ExecutorService service = Executors.newSingleThreadExecutor();
 
+        String finalLocation = location;
         service.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    ArrayList<MunicipalityData> populationData = dr.getData(context, location);
-                    WeatherData weatherData = wr.getWeatherData(location);
-                    ArrayList<EmploymentData> employmentData = er.getData(context,location);
+                    ArrayList<MunicipalityData> populationData = dr.getData(context, finalLocation);
+                    WeatherData weatherData = wr.getWeatherData(finalLocation);
+                    ArrayList<EmploymentData> employmentData = er.getData(context, finalLocation);
                     if (populationData != null && weatherData != null && employmentData != null) {
                         runOnUiThread(new Runnable() {
                             @Override
