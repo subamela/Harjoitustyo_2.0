@@ -26,7 +26,7 @@ public class EmploymentDataRetriever {
 
         try {
             areas = objectMapper.readTree(new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_115x.px"));
-            Log.d("LUT", "API Response: " + areas.toPrettyString());
+            //Log.d("LUT", "API Response: " + areas.toPrettyString());
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -38,10 +38,10 @@ public class EmploymentDataRetriever {
         ArrayList<String> keys = new ArrayList<>();
         ArrayList<String> values = new ArrayList<>();
 
-        for (JsonNode node : areas.get("variables").get(1).get("values")) {
+        for (JsonNode node : areas.get("variables").get(0).get("values")) {
             values.add(node.asText());
         }
-        for (JsonNode node : areas.get("variables").get(1).get("valueTexts")) {
+        for (JsonNode node : areas.get("variables").get(0).get("valueTexts")) {
             keys.add(node.asText());
         }
         Log.d("LUT", "Keys: " + keys.toString());
@@ -67,7 +67,7 @@ public class EmploymentDataRetriever {
 
             JsonNode jsonInputString = objectMapper.readTree(context.getResources().openRawResource(R.raw.query2));
 
-            ((ObjectNode) jsonInputString.get("query2").get(0).get("selection")).putArray("values").add(code);
+            ((ObjectNode) jsonInputString.get("query2").get(1).get("selection")).putArray("values").add(code);
 
             byte[] input = objectMapper.writeValueAsBytes(jsonInputString);
             OutputStream os = con.getOutputStream();
@@ -98,7 +98,7 @@ public class EmploymentDataRetriever {
             ArrayList<EmploymentData> employmentDataList = new ArrayList<>();
 
             for (int i = 0; i < years.size(); i++) {
-                employmentDataList.add(new EmploymentData(Integer.valueOf(years.get(i)), Integer.valueOf(employment.get(i))));
+                employmentDataList.add(new EmploymentData(Integer.valueOf(years.get(i)), Double.valueOf(employment.get(i))));
             }
             Log.d("LUT", "Employment Data: " + employmentDataList.toString());
             return employmentDataList;
