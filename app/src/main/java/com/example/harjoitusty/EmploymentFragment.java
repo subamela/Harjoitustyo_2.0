@@ -17,6 +17,7 @@ public class EmploymentFragment extends Fragment {
     private TextView textEmployment;
     private TextView textSelfSufficiency;
     private ArrayList<EmploymentData> employmentData;
+    private ArrayList<SufficiencyData> sufficiencyData;
 
 
     public EmploymentFragment() {
@@ -24,10 +25,11 @@ public class EmploymentFragment extends Fragment {
     }
 
 
-    public static EmploymentFragment newInstance(ArrayList<EmploymentData> employmentData) {
+    public static EmploymentFragment newInstance(ArrayList<EmploymentData> employmentData, ArrayList<SufficiencyData> sufficiencyData) {
         EmploymentFragment fragment = new EmploymentFragment();
         Bundle args = new Bundle();
         args.putSerializable("employmentData", employmentData);
+        args.putSerializable("sufficiencyData", sufficiencyData);
         fragment.setArguments(args);
         return fragment;
     }
@@ -37,6 +39,7 @@ public class EmploymentFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             employmentData = (ArrayList<EmploymentData>) getArguments().getSerializable("employmentData");
+            sufficiencyData = (ArrayList<SufficiencyData>) getArguments().getSerializable("sufficiencyData");
 
         }
     }
@@ -53,8 +56,9 @@ public class EmploymentFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         textEmployment = view.findViewById(R.id.textEmployment);
         textSelfSufficiency = view.findViewById(R.id.textSelfSufficiency);
-        if (employmentData != null) {
+        if (employmentData != null && sufficiencyData != null) {
             displayEmployment(employmentData);
+            displaySelfSufficient(sufficiencyData);
         }
     }
 
@@ -62,10 +66,20 @@ public class EmploymentFragment extends Fragment {
         String s = "";
         if (employmentData != null) {
             for (EmploymentData data : employmentData) {
-                s = s + data.getYear() + ": " + data.getEmploymentRate() + "\n";
+                s = s + data.getYear() + ": " + data.getEmploymentRate() + " %\n";
             }
         }
-        textEmployment.setText(s);
+        textEmployment.setText("Työllisyys viiden vuoden aikana: \n" + s);
+    }
+
+    private void displaySelfSufficient(ArrayList<SufficiencyData> sufficiencyData) {
+        String y = "";
+        if (sufficiencyData != null) {
+            for (SufficiencyData data : sufficiencyData) {
+                y = y + data.getYear() + ": " + data.getSufficiencyRate() + " %\n";
+            }
+        }
+        textSelfSufficiency.setText("Työomavaraisuus viiden vuoden aikana: \n" + y);
     }
 }
 

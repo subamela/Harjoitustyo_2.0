@@ -12,12 +12,14 @@ public class MyFragmentAdapter extends FragmentStateAdapter {
     private ArrayList<MunicipalityData> populationData;
     private WeatherData weatherData;
     private ArrayList<EmploymentData> employmentData;
+    private ArrayList<SufficiencyData> sufficiencyData;
     public MyFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,
-                             ArrayList<MunicipalityData> populationData, WeatherData weatherData, ArrayList<EmploymentData> employmentData) {
+                             ArrayList<MunicipalityData> populationData, WeatherData weatherData, ArrayList<EmploymentData> employmentData, ArrayList<SufficiencyData> sufficiencyData) {
         super(fragmentManager, lifecycle);
         this.populationData = populationData;
         this.weatherData = weatherData;
         this.employmentData = employmentData;
+        this.sufficiencyData = sufficiencyData;
     }
 
     @NonNull
@@ -29,7 +31,7 @@ public class MyFragmentAdapter extends FragmentStateAdapter {
             case 1:
                 return WeatherFragment.newInstance(weatherData);
             case 2:
-                return  EmploymentFragment.newInstance(employmentData);
+                return  EmploymentFragment.newInstance(employmentData, sufficiencyData);
             default:
                 return PopulationFragment.newInstance(populationData);
         }

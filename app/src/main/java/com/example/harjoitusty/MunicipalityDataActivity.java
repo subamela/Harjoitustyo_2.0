@@ -37,10 +37,12 @@ public class MunicipalityDataActivity extends AppCompatActivity {
         ArrayList<MunicipalityData> populationData = (ArrayList<MunicipalityData>) getIntent().getSerializableExtra("populationData");
         WeatherData weatherData = (WeatherData) getIntent().getSerializableExtra("weatherData");
         ArrayList<EmploymentData> employmentData = (ArrayList<EmploymentData>) getIntent().getSerializableExtra("employmentData");
+        ArrayList<SufficiencyData> sufficiencyData = (ArrayList<SufficiencyData>) getIntent().getSerializableExtra("sufficiencyData");
+
 
 
         FragmentManager fm = getSupportFragmentManager();
-        adapter = new MyFragmentAdapter(fm , getLifecycle(), populationData, weatherData, employmentData);
+        adapter = new MyFragmentAdapter(fm , getLifecycle(), populationData, weatherData, employmentData, sufficiencyData);
         viewPager2.setAdapter(adapter);
 
 
