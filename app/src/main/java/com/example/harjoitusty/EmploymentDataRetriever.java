@@ -26,7 +26,10 @@ public class EmploymentDataRetriever {
 
         try {
             areas = objectMapper.readTree(new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_115x.px"));
-            //Log.d("LUT", "API Response: " + areas.toPrettyString());
+            if (areas == null) {
+                Log.e("LUT", "Failed to retrieve data, JsonNode is null.");
+                return null;
+            }
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
