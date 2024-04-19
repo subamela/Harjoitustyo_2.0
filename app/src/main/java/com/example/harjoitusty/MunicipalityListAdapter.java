@@ -25,7 +25,7 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityVi
     @Override
     public void onBindViewHolder(@NonNull MunicipalityViewHolder holder, int position) {
         holder.municipalityName.setText(municipalities.get(position).getMunicipalityName());
-        holder.municipalityWeather.setText(municipalities.get(position).getWeather());
+
 
     }
 

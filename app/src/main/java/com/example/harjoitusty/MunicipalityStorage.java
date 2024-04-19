@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MunicipalityStorage {
     private static MunicipalityStorage storage = null;
-    private static ArrayList<Municipality> municipalities = new ArrayList<>();
+    private static ArrayList<Municipality> municipalities;
     private MunicipalityStorage() {
         municipalities = new ArrayList<>();
     }
@@ -22,6 +22,6 @@ public class MunicipalityStorage {
 
     public void addMunicipality(Municipality municipality) {
         municipalities.add(municipality);
-    }
 
+    }
 }

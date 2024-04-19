@@ -24,10 +24,11 @@ import org.apache.commons.lang3.StringUtils;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private MunicipalityStorage municipalityList;
     private EditText editTextLocation;
     private RecyclerView recyclerView;
     private MunicipalityListAdapter mla;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        municipalityList = MunicipalityStorage.getInstance();
         editTextLocation = findViewById(R.id.txtEditLocation);
         recyclerView = findViewById(R.id.rvMunicipalities);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(mla = new MunicipalityListAdapter(getApplicationContext(), MunicipalityStorage.getMunicipalities()));
+        recyclerView.setAdapter(mla = new MunicipalityListAdapter(getApplicationContext(), municipalityList.getMunicipalities()));
 
     }
     public void onFindBtnClick(View view) {
