@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class EmploymentFragment extends Fragment {
     private TextView textTemperature;
@@ -21,7 +23,7 @@ public class EmploymentFragment extends Fragment {
     }
 
 
-    public static EmploymentFragment newInstance(EmploymentData employmentData) {
+    public static EmploymentFragment newInstance(ArrayList<EmploymentData> employmentData) {
         EmploymentFragment fragment = new EmploymentFragment();
         Bundle args = new Bundle();
         args.putSerializable("employmentData", employmentData);

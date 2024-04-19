@@ -84,25 +84,24 @@ public class EmploymentDataRetriever {
 
 
             ArrayList<String> years = new ArrayList<>();
-            ArrayList<String> populations = new ArrayList<>();
+            ArrayList<String> employment = new ArrayList<>();
 
-            //Täällä voidaan muuttaa sitä kuinka monta vuotta luetaan !!!!!!!!!!!!!!!
 
             for (JsonNode node : employmentData.get("dimension").get("Vuosi").get("category").get("label")) {
                 years.add(node.asText());
             }
 
             for (JsonNode node : employmentData.get("value")) {
-                populations.add(node.asText());
+                employment.add(node.asText());
             }
 
-            //ArrayList<EmploymentData> employmentData = new ArrayList<>();
+            ArrayList<EmploymentData> employmentDataList = new ArrayList<>();
 
             for (int i = 0; i < years.size(); i++) {
-            //    employmentData.add(new EmploymentData(Integer.valueOf(years.get(i)), Integer.valueOf(populations.get(i))));
+                employmentDataList.add(new EmploymentData(Integer.valueOf(years.get(i)), Integer.valueOf(employment.get(i))));
             }
-            Log.d("LUT", "Population Data: " + employmentData.toString());
-            //return employmentData;
+            Log.d("LUT", "Employment Data: " + employmentDataList.toString());
+            return employmentDataList;
 
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block

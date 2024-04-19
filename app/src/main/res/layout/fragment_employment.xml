@@ -26,9 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="Kunnan työllisyys"
+                android:text="Kunnan työllisyys ja työomavaraisuus"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,27 +38,53 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Työllisyys ja työomavaraisuus"
+                android:text="Työllisyys"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textMunicipalityEmployment" />
 
             <TextView
-                android:id="@+id/textWeatherData"
-                android:layout_width="364dp"
-                android:layout_height="549dp"
-                android:layout_marginTop="40dp"
+                android:id="@+id/textEmployment"
+                android:layout_width="363dp"
+                android:layout_height="194dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:background="#ADD8E6"
-                android:text="Työllisyys ja työomavaraisuus kuluneelta vuodelta"
+                android:text="Työllisyys 5 viime vuodelta"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/textSelfSufficiency"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textTyöllisyys" />
+
+            <TextView
+                android:id="@+id/textTyöomavaraisuus"
+                android:layout_width="363dp"
+                android:layout_height="194dp"
+                android:layout_marginBottom="72dp"
+                android:background="#ADD8E6"
+                android:text="Työomavaraisuus 5 viime vuodelta"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textTyöllisyys"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textSelfSufficiency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="16dp"
+                android:text="Työomavaraisuus"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/textTyöomavaraisuus"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

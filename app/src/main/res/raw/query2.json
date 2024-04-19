@@ -1,6 +1,15 @@
 {
   "query": [
     {
+      "code": "Alue",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "Korvaa tämä"
+        ]
+      }
+    },
+    {
       "code": "Vuosi",
       "selection": {
         "filter": "item",
@@ -27,3 +36,7 @@
     "format": "json-stat2"
   }
 }
+
+
+
+

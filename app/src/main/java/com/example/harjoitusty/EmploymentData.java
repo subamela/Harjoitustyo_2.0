@@ -3,27 +3,31 @@ package com.example.harjoitusty;
 import java.io.Serializable;
 
 public class EmploymentData implements Serializable {
-    String employmentRate;
-    String workplaceSelfSufficiency;
+    private int year;
+    private int employmentRate;
 
-    public EmploymentData(String employmentRate, String workplaceSelfSufficiency) {
+
+    public EmploymentData(int year, int employmentRate) {
+        this.year = year;
         this.employmentRate = employmentRate;
-        this.workplaceSelfSufficiency = workplaceSelfSufficiency;
+
     }
 
-    public String getEmploymentRate() {
+    public int getEmploymentRate() {
         return employmentRate;
     }
 
-    public void setEmploymentRate(String employmentRate) {
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+
+    public void setEmploymentRate(int employmentRate) {
         this.employmentRate = employmentRate;
     }
 
-    public String getWorkplaceSelfSufficiency() {
-        return workplaceSelfSufficiency;
-    }
-
-    public void setWorkplaceSelfSufficiency(String workplaceSelfSufficiency) {
-        this.workplaceSelfSufficiency = workplaceSelfSufficiency;
-    }
 }

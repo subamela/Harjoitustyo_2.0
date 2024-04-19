@@ -45,7 +45,7 @@ public class WeatherFragment extends Fragment {
         textMunicipalityName2 = view.findViewById(R.id.textMunicipalityName2);
         weatherIcon = view.findViewById(R.id.imageWeatherIcon);
         textTemperature = view.findViewById(R.id.textTemperature);
-        textWeatherData = view.findViewById(R.id.textWeatherData);
+        textWeatherData = view.findViewById(R.id.textEmployment);
 
         if (weatherData != null) {
             displayWeather(weatherData);

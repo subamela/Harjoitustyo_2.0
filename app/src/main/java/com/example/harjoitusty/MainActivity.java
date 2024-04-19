@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = this;
         MunicipalityDataRetriever dr = new MunicipalityDataRetriever();
         WeatherDataRetriever wr = new WeatherDataRetriever();
+        EmploymentDataRetriever er = new EmploymentDataRetriever();
         String location = editTextLocation.getText().toString();
 
         ExecutorService service = Executors.newSingleThreadExecutor();
@@ -57,13 +58,15 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     ArrayList<MunicipalityData> populationData = dr.getData(context, location);
                     WeatherData weatherData = wr.getWeatherData(location);
-                    if (populationData != null && weatherData != null) {
+                    ArrayList<EmploymentData> employmentData = er.getData(context,location);
+                    if (populationData != null && weatherData != null && employmentData != null) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 Intent intent = new Intent(MainActivity.this, MunicipalityDataActivity.class);
                                 intent.putExtra("populationData", populationData);
                                 intent.putExtra("weatherData", weatherData);
+                                intent.putExtra("employmentData", employmentData);
                                 Log.d("LUT", "Starting MunicipalityDataActivity with Intent.");
                                 startActivity(intent);
 

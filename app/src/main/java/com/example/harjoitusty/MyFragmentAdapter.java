@@ -11,11 +11,13 @@ import java.util.ArrayList;
 public class MyFragmentAdapter extends FragmentStateAdapter {
     private ArrayList<MunicipalityData> populationData;
     private WeatherData weatherData;
+    private ArrayList<EmploymentData> employmentData;
     public MyFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,
-                             ArrayList<MunicipalityData> populationData, WeatherData weatherData) {
+                             ArrayList<MunicipalityData> populationData, WeatherData weatherData, ArrayList<EmploymentData> employmentData) {
         super(fragmentManager, lifecycle);
         this.populationData = populationData;
         this.weatherData = weatherData;
+        this.employmentData = employmentData;
     }
 
     @NonNull
@@ -26,9 +28,10 @@ public class MyFragmentAdapter extends FragmentStateAdapter {
                 return PopulationFragment.newInstance(populationData);
             case 1:
                 return WeatherFragment.newInstance(weatherData);
+            case 2:
+                return  EmploymentFragment.newInstance(employmentData);
             default:
-                // Handle other fragments or default case
-                return new Fragment(); // or a specific default fragment
+                return PopulationFragment.newInstance(populationData);
         }
     }
 
