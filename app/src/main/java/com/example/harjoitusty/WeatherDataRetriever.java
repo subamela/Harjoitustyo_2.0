@@ -19,7 +19,7 @@ public class WeatherDataRetriever {
         try {
             JsonNode areas = null;
             areas = objectMapper.readTree(new URL(String.format(CONVERTER_BASED_URL, municipality, API_KEY)));
-            Log.d("LUT", areas.toPrettyString());
+            //Log.d("LUT", areas.toPrettyString());
             if (areas == null || areas.isEmpty()) {
                 return null;
             }
@@ -27,12 +27,10 @@ public class WeatherDataRetriever {
             String latitude = areas.get(0).get("lat").toString();
             String longitude = areas.get(0).get("lon").toString();
 
-            System.out.println("Fetching weather data for coordinates: " + latitude + ", " + longitude);
-
             JsonNode weatherData;
 
             weatherData = objectMapper.readTree(new URL(String.format(WEATHER_BASED_URL, latitude, longitude, API_KEY)));
-            Log.d("LUT", weatherData.toPrettyString());
+            //Log.d("LUT", weatherData.toPrettyString());
             if (weatherData == null || weatherData.isEmpty()) {
                 return null;
             }

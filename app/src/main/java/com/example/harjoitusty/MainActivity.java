@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MunicipalityListA
 
     }
     public void onFindBtnClick(View view) {
-        Log.d("LUT", "NNappula toimii");
+        //Log.d("LUT", "Button works");
         Context context = this;
         MunicipalityDataRetriever dr = new MunicipalityDataRetriever();
         WeatherDataRetriever wr = new WeatherDataRetriever();
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements MunicipalityListA
                                 intent.putExtra("weatherData", weatherData);
                                 intent.putExtra("employmentData", employmentData);
                                 intent.putExtra("sufficiencyData", sufficiencyData);
-                                Log.d("LUT", "Starting MunicipalityDataActivity with Intent.");
+                                //Log.d("LUT", "Starting MunicipalityDataActivity with Intent.");
                                 startActivity(intent);
 
                             }
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MunicipalityListA
                             }
                         });
                     }
-                    Log.d("LUT", "Data haettu");
+                    Log.d("LUT", "Data founded");
                 } catch (Exception e) {
                     Log.e("LUT", "Error in data retrieval: " + e.getMessage());
                 }
@@ -118,6 +118,5 @@ public class MainActivity extends AppCompatActivity implements MunicipalityListA
     protected void onResume() {
         super.onResume();
         recyclerView.setAdapter(new MunicipalityListAdapter(getApplicationContext(), municipalityList.getMunicipalities(), this));
-        //mla.notifyDataSetChanged();
     }
 }

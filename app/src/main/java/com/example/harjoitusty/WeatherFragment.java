@@ -104,5 +104,4 @@ public class WeatherFragment extends Fragment {
                 weatherIcon.setImageResource(R.drawable.ic_clear_sky);
         }
     }
-
 }

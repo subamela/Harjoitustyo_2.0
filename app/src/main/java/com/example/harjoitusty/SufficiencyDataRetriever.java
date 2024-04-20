@@ -46,8 +46,8 @@ public class SufficiencyDataRetriever {
         for (JsonNode node : areas.get("variables").get(1).get("valueTexts")) {
             keys.add(node.asText());
         }
-        Log.d("LUT", "Keys: " + keys.toString());
-        Log.d("LUT", "Values: " + values.toString());
+        //Log.d("LUT", "Keys: " + keys.toString());
+        //Log.d("LUT", "Values: " + values.toString());
 
         HashMap<String, String> municipalityCodes = new HashMap<>();
 
@@ -102,7 +102,7 @@ public class SufficiencyDataRetriever {
             for (int i = 0; i < years.size(); i++) {
                 sufficiencyDataList.add(new SufficiencyData(Integer.valueOf(years.get(i)), Float.valueOf(sufficiencyRate.get(i))));
             }
-            Log.d("LUT", "Sufficiency Data: " + sufficiencyDataList.toString());
+            //Log.d("LUT", "Sufficiency Data: " + sufficiencyDataList.toString());
             return sufficiencyDataList;
 
         } catch (MalformedURLException e) {

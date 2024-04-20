@@ -21,7 +21,7 @@ public class EmploymentFragment extends Fragment {
 
 
     public EmploymentFragment() {
-        // Required empty public constructor
+
     }
 
 

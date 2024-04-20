@@ -27,7 +27,7 @@ public class EmploymentDataRetriever {
         try {
             areas = objectMapper.readTree(new URL("https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tyokay/statfin_tyokay_pxt_115x.px"));
             if (areas == null) {
-                Log.e("LUT", "Failed to retrieve data, JsonNode is null.");
+                //Log.e("LUT", "Failed to retrieve data, JsonNode is null.");
                 return null;
             }
         } catch (MalformedURLException e) {
@@ -47,8 +47,8 @@ public class EmploymentDataRetriever {
         for (JsonNode node : areas.get("variables").get(0).get("valueTexts")) {
             keys.add(node.asText());
         }
-        Log.d("LUT", "Keys: " + keys.toString());
-        Log.d("LUT", "Values: " + values.toString());
+        //Log.d("LUT", "Keys: " + keys.toString());
+        //Log.d("LUT", "Values: " + values.toString());
 
         HashMap<String, String> municipalityCodes = new HashMap<>();
 
@@ -103,7 +103,7 @@ public class EmploymentDataRetriever {
             for (int i = 0; i < years.size(); i++) {
                 employmentDataList.add(new EmploymentData(Integer.valueOf(years.get(i)), Float.valueOf(employment.get(i))));
             }
-            Log.d("LUT", "Employment Data: " + employmentDataList.toString());
+            //Log.d("LUT", "Employment Data: " + employmentDataList.toString());
             return employmentDataList;
 
         } catch (MalformedURLException e) {
