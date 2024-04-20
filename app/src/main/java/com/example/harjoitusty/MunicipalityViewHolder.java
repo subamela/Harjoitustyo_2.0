@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MunicipalityViewHolder extends RecyclerView.ViewHolder {
-    TextView municipalityName, municipalityWeather;
+    TextView municipalityName;
     public MunicipalityViewHolder(@NonNull View itemView) {
         super(itemView);
         municipalityName = itemView.findViewById(R.id.textMunicipalityName2);
-
     }
+
 
 }

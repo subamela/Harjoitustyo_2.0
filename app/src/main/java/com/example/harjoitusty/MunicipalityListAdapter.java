@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityViewHolder> {
     private Context context;
     private ArrayList<Municipality> municipalities = new ArrayList<>();
-    public MunicipalityListAdapter(Context context, ArrayList<Municipality> municipalities) {
+    private OnMunicipalityClickListener listener;
+    public MunicipalityListAdapter(Context context, ArrayList<Municipality> municipalities, OnMunicipalityClickListener listener) {
         this.context = context;
         this.municipalities = municipalities;
+        this.listener = listener;
     }
     @NonNull
     @Override
@@ -25,8 +27,15 @@ public class MunicipalityListAdapter extends RecyclerView.Adapter<MunicipalityVi
     @Override
     public void onBindViewHolder(@NonNull MunicipalityViewHolder holder, int position) {
         holder.municipalityName.setText(municipalities.get(position).getMunicipalityName());
-
-
+        holder.municipalityName.setOnClickListener(view -> {
+            int pos = holder.getAdapterPosition();
+            if (listener != null && position != RecyclerView.NO_POSITION) {
+                listener.onMunicipalityClick(municipalities.get(position));
+            }
+        });
+    }
+    public interface OnMunicipalityClickListener {
+        void onMunicipalityClick(Municipality municipality);
     }
 
     @Override

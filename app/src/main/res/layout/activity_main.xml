@@ -14,7 +14,7 @@ android:background="#ADD8E6">
     android:layout_height="58dp"
     android:layout_marginTop="128dp"
     android:ems="10"
-    android:hint="Paikkakunta isolla (Oulu)"
+    android:hint="Paikkakunta"
     android:inputType="text"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.174"
@@ -45,16 +45,17 @@ android:background="#ADD8E6">
     app:layout_constraintTop_toTopOf="parent"
     app:srcCompat="@drawable/flag_of_finland_svg" />
 
-<ImageView
-    android:id="@+id/imageFinlandLandscape"
-    android:layout_width="341dp"
-    android:layout_height="248dp"
-    android:layout_marginBottom="8dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/rvMunicipalities"
-    app:srcCompat="@drawable/isojarvi_national_park_finland_landscape" />
+    <ImageView
+        android:id="@+id/imageFinlandLandscape"
+        android:layout_width="383dp"
+        android:layout_height="241dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvMunicipalities"
+        app:srcCompat="@drawable/isojarvi_national_park_finland_landscape" />
 
 <TextView
     android:id="@+id/txtHeadline"

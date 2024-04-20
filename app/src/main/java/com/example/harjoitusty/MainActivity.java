@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 import org.apache.commons.lang3.StringUtils;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MunicipalityListAdapter.OnMunicipalityClickListener {
     private MunicipalityStorage municipalityList;
     private EditText editTextLocation;
     private RecyclerView recyclerView;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         editTextLocation = findViewById(R.id.txtEditLocation);
         recyclerView = findViewById(R.id.rvMunicipalities);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(mla = new MunicipalityListAdapter(getApplicationContext(), municipalityList.getMunicipalities()));
+        recyclerView.setAdapter(mla = new MunicipalityListAdapter(getApplicationContext(), municipalityList.getMunicipalities(),this));
 
     }
     public void onFindBtnClick(View view) {
@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         SufficiencyDataRetriever sr = new SufficiencyDataRetriever();
         String location = editTextLocation.getText().toString().trim();
         location = StringUtils.capitalize(location);
+        Municipality newMunicipality = new Municipality(location);
+        municipalityList.addMunicipality(newMunicipality);
+        mla.notifyDataSetChanged();
 
         ExecutorService service = Executors.newSingleThreadExecutor();
 
@@ -98,10 +101,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void addMunicipality(View view) {
+        String municipalityName = editTextLocation.getText().toString().trim();
+        municipalityName = StringUtils.capitalize(municipalityName);
+        Municipality newMunicipality = new Municipality(municipalityName);
+        MunicipalityStorage.getInstance().addMunicipality(newMunicipality);
+
+    }
+    public void onMunicipalityClick(Municipality municipality) {
+        editTextLocation.setText(municipality.getMunicipalityName());
+        onFindBtnClick(null);
+
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mla.notifyDataSetChanged();
+        recyclerView.setAdapter(new MunicipalityListAdapter(getApplicationContext(), municipalityList.getMunicipalities(), this));
+        //mla.notifyDataSetChanged();
     }
 }
