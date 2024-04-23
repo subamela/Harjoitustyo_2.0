@@ -56,9 +56,6 @@ public class MainActivity extends AppCompatActivity implements MunicipalityListA
         SufficiencyDataRetriever sr = new SufficiencyDataRetriever();
         String location = editTextLocation.getText().toString().trim();
         location = StringUtils.capitalize(location);
-        Municipality newMunicipality = new Municipality(location);
-        municipalityList.addMunicipality(newMunicipality);
-        mla.notifyDataSetChanged();
 
         ExecutorService service = Executors.newSingleThreadExecutor();
 
@@ -76,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements MunicipalityListA
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                Municipality newMunicipality = new Municipality(finalLocation);
+                                municipalityList.addMunicipality(newMunicipality);
+                                mla.notifyDataSetChanged();
                                 Intent intent = new Intent(MainActivity.this, MunicipalityDataActivity.class);
                                 intent.putExtra("populationData", populationData);
                                 intent.putExtra("weatherData", weatherData);

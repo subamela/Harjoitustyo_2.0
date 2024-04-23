@@ -21,7 +21,11 @@ public class MunicipalityStorage {
     }
 
     public void addMunicipality(Municipality municipality) {
+        for (Municipality m : municipalities) {
+            if (m.getMunicipalityName().equalsIgnoreCase(municipality.getMunicipalityName())) {
+                return;
+            }
+        }
         municipalities.add(municipality);
-
     }
 }

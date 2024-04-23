@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -84,7 +85,8 @@ public class PopulationFragment extends Fragment {
         }
 
         BarDataSet barDataSet = new BarDataSet(entries, "Väkiluvut");
-        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        int darkBlueColor = Color.rgb(0, 0, 139);
+        barDataSet.setColors(darkBlueColor);
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(16f);
 
