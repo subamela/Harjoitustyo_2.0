@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MunicipalityListA
         WeatherDataRetriever wr = new WeatherDataRetriever();
         EmploymentDataRetriever er = new EmploymentDataRetriever();
         SufficiencyDataRetriever sr = new SufficiencyDataRetriever();
-        String location = editTextLocation.getText().toString().trim();
+        String location = editTextLocation.getText().toString().trim().toLowerCase();
         location = StringUtils.capitalize(location);
 
         ExecutorService service = Executors.newSingleThreadExecutor();
